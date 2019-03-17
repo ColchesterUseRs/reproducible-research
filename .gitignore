@@ -5,7 +5,6 @@
 
 *.Rproj
 *.html
-*.rds
 *.RData
 
 data/

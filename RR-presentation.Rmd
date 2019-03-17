@@ -60,7 +60,14 @@ y <- 2
 save.image()
 ```
 
-
+Why?
+```{r}
+x <- list("important information is stored here", "it's going to be overwritten!!!")
+x
+load(".RData")
+x
+y
+```
 
 This is better
 ```{r data_better}
@@ -68,4 +75,28 @@ x <- 1
 y <- 2
 saveRDS(x, "data/x.rds")
 saveRDS(y, "data/y.rds")
+x <- readRDS("data/x.rds")
+y <- readRDS("data/y.rds")
+x
+y
 ```
+
+This is best
+```{r data_best}
+data_path <- "data"
+
+saveRDS(x, file.path(data_path, "x.rds"))
+saveRDS(y, file.path(data_path, "y.rds"))
+
+x <- readRDS(file.path(data_path, "x.rds"))
+y <- readRDS(file.path(data_path, "y.rds"))
+x
+y
+```
+
+`file.path` is OS agnostic
+
+...works on Windows, Linux, Mac :)
+
+
+
