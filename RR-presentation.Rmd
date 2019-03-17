@@ -19,9 +19,7 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-## File and Directory management
-
-### Two bad practices
+## Two bad practices
 
 ![Don't get Jenny mad](https://pbs.twimg.com/media/DQugFIWUEAErq0D.jpg)
 
@@ -31,12 +29,43 @@ summary(cars)
 
 Solutions!
 
+1. If you don't know or follow Jenny Bryan check her out: https://twitter.com/JennyBryan
 1. Projects
+    1. Show how to set up and use Projects
+2. Using `save.image` to save output: `save.image("~/development/reproducible-research/bad.RData")`
+    1. Use saveRDS() readRDS() instead TODO: insert example here
+2. file.path
 
-2. here::here()
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r here, echo=TRUE}
+here::here()
+here::dr_here()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## File and Directory management
+
+
+## Data
+
+### Disable auto save and restore workspace!
+
+1. Tools
+2. GLobal Options
+3. ![Set save to Never and uncheck restore...](figures/rdata.PNG)
+
+
+This is not recommended!
+```{r data}
+x <- 1
+y <- 2
+save.image()
+```
+
+
+
+This is better
+```{r data_better}
+x <- 1
+y <- 2
+saveRDS(x, "data/x.rds")
+saveRDS(y, "data/y.rds")
+```
