@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Research"
+title: "Reproducible Research - an experiment"
 author: "Bob Komara"
 date: "March 17, 2019"
 output: html_document
@@ -34,7 +34,6 @@ Solutions!
     1. Show how to set up and use Projects
 2. Using `save.image` to save output: `save.image("~/development/reproducible-research/bad.RData")`
     1. Use saveRDS() readRDS() instead TODO: insert example here
-2. file.path
 
 ```{r here, echo=TRUE}
 here::here()
@@ -48,10 +47,13 @@ here::dr_here()
 
 ### Disable auto save and restore workspace!
 
-1. Tools
-2. GLobal Options
-3. ![Set save to Never and uncheck restore...](figures/rdata.PNG)
+All of your objects in the Global Environment
 
+1. Tools
+2. Global Options
+3. ![Set 'Save workspace ro .RData on exit:' to 'Never' <br> Uncheck 'Restore .RData into workspace at startup'](figures/rdata.PNG)
+
+4. Be brave! Pressing ctrl+shift+f10 should not be scary. It's a sign that you have set up your work for RR and you can be confident in your reproducible workflow.
 
 This is not recommended!
 ```{r data}
@@ -81,7 +83,7 @@ x
 y
 ```
 
-This is best
+#### This is best
 ```{r data_best}
 data_path <- "data"
 
@@ -93,10 +95,25 @@ y <- readRDS(file.path(data_path, "y.rds"))
 x
 y
 ```
+#### Why?
 
-`file.path` is OS agnostic
+1. `file.path` is OS agnostic
 
-...works on Windows, Linux, Mac :)
+    ...works on Windows, Linux, Mac :)
 
+    This is nice for portability.
+    
+2. What if you add different data in another folder called `data2`?
+    
+    It's way too easy to miss manually typing or copy/replace
+    
+    Code so that when you make a change it's gets propragated automatically!
+
+```{r eval=FALSE}
+saveRDS(x, "data2/x.rds")
+saveRDS(y, "data2/y.rds")
+x <- readRDS("data/x.rds")
+y <- readRDS("data2/y.rds")
+```
 
 
