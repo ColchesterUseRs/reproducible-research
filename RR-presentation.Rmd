@@ -19,9 +19,21 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-## Including Plots
+## File and Directory management
 
-You can also embed plots, for example:
+### Two bad practices
+
+![Don't get Jenny mad](https://pbs.twimg.com/media/DQugFIWUEAErq0D.jpg)
+
+![This will make her mad too](https://pbs.twimg.com/media/DQugFMjV4AAZtB-.jpg)
+
+#### Why are these practces sub-optimal?
+
+Solutions!
+
+1. Projects
+
+2. here::here()
 
 ```{r pressure, echo=FALSE}
 plot(pressure)
