@@ -15,4 +15,7 @@ In R-Studio:
 
 Resources:
 
+1. http://t-redactyl.io/blog/2016/10/a-crash-course-in-reproducible-research-in-r.html
 1. https://whattheyforgot.org/
+2. https://stackoverflow.com/questions/21967254/how-to-write-a-reader-friendly-sessioninfo-to-text-file
+3. https://twitter.com/hadleywickham/status/940021008764846080

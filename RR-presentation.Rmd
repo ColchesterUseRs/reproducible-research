@@ -9,15 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## What is reproducible research?
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+1. What did I do?
+2. Why did I do it?
+3. How did I set up everything at the time of the analysis?
+4. When did I make changes, and what were they?
+5. Who needs to access it, and how can I get it to them?
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
+http://t-redactyl.io/blog/2016/10/a-crash-course-in-reproducible-research-in-r.html
 
 ## Two bad practices
 
@@ -114,6 +114,44 @@ saveRDS(x, "data2/x.rds")
 saveRDS(y, "data2/y.rds")
 x <- readRDS("data/x.rds")
 y <- readRDS("data2/y.rds")
+```
+
+## Session information and Package Management
+
+We have all been there. You want to rerun an analysis from 3 years ago and something bad happens. Bad varies from getting unspecified errors to debug to the worst case where code runs but you get a vastly different answer.
+
+### Session Information
+
+There is an easy way to see what versions of base R and installed packages are loaded into your current session.
+```{r}
+sessionInfo()
+```
+
+```{r}
+output_dir <- "output"
+session_fname <- "sessionInfo.txt"
+session_key <- file.path(output_dir, session_fname)
+writeLines(capture.output(sessionInfo()), session_key)
+```
+
+#### Install a specific version of a package
+
+```{r}
+install.packages()
+```
+
+### Package Management
+
+TODO: How to use Packrat
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
 ```
 
 
