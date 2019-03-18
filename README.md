@@ -23,3 +23,4 @@ Resources:
 5. [Literate Programing Wiki](https://en.wikipedia.org/wiki/Literate_programming)
 6. https://stackoverflow.com/questions/50956380/install-specific-package-version-in-microsoft-r-open
 7. [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+8. https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages

@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## What is reproducible research?
+## What is reproducible research?[^1]
 
 1. What did I do?
 2. Why did I do it?
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 4. When did I make changes, and what were they?
 5. Who needs to access it, and how can I get it to them?
 
-http://t-redactyl.io/blog/2016/10/a-crash-course-in-reproducible-research-in-r.html
+[^1]: http://t-redactyl.io/blog/2016/10/a-crash-course-in-reproducible-research-in-r.html
 
 ## Two bad practices
 
@@ -134,24 +134,57 @@ session_key <- file.path(output_dir, session_fname)
 writeLines(capture.output(sessionInfo()), session_key)
 ```
 
-#### Install a specific version of a package
+#### Install a package from a snapshot in time
 
-```{r}
-install.packages()
+MRAN is is a daily snapshot of CRAN the Microsoft hosts to be used in conjunction with its `Checkpoint` package.
+
+Change all installed packages to particular point in time.
+```{r echo = TRUE}
+#checkpoint::checkpoint("YYYY-MM-DD")
 ```
+
+Install only one package at a particular point in time
+```{r echo = TRUE}
+#install.packages('xfun', repos='https://mran.microsoft.com/snapshot/2017-12-31/', dependencies=TRUE)
+```
+
+#### Install a specific package version
+
+The package `devtools` allows you to easily install a specific version of a package.
+```{r echo = TRUE}
+#devtools::install_version("xfun", version = "0.4", repos = "http://cran.us.r-project.org")
+```
+
+### Potential issues[^2]
+
+1. You may be losing functionality or bug fixes that are only present in the newer versions of the packages.
+2. The older package version needed may not be compatible with the version of R you have installed.
+3. In this case, you will either need to downgrade R to a compatible version or update your R code to work with a newer version of the package.
+
+[^2]: https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages
 
 ### Package Management
 
-TODO: How to use Packrat
+If you look the third sub-tab on the `Packages` tab in the `Files` pane, you will see a mysterious thing called `Packrat`.
 
-## R Markdown
+It is R Studio's built in package management system. It records information about packages used in a `project` and downloads all of them for specifically that project
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Takes up more space because it repeats every package for each project.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+TODO: How to use `Packrat` demo???
 
-```{r cars}
-summary(cars)
+## Literate Programming
+
+Literate programming is a programming paradigm introduced by Donald Knuth in which a program is given as an explanation of the program logic in a natural language, such as English, interspersed with snippets of macros and traditional source code, from which a compilable source code can be generated[^3]
+
+[^3]:https://en.wikipedia.org/wiki/Literate_programming
+
+How to do this in R?
+
+R markdown!
+
+```{r}
+print("This is literate programming :)")
 ```
 
-
+#### Bibliography
