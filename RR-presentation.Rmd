@@ -42,10 +42,29 @@ here::dr_here()
 
 ## File and Directory management
 
+### File Naming[^4]
 
-## Data
+**Put time and thought into naming your files are directories!**
 
-### Disable auto save and restore workspace!
+Stolen from here: https://speakerdeck.com/jennybc/how-to-name-files
+
+Go read this afterwards!
+
+![](figures/jenny-names-matter.PNG)
+
+![](figures/jenny-three-principles.PNG)
+
+![](figures/jenny-yes-no.PNG)
+
+[^4]: https://speakerdeck.com/jennybc/how-to-name-files
+
+#### Directory structure
+
+TODO: write something profound here. If going to share code or write a package use typical package structure. Else do something obvious from directory names.
+
+### Data
+
+#### Disable auto save and restore workspace!
 
 All of your objects in the Global Environment
 
@@ -116,6 +135,10 @@ x <- readRDS("data/x.rds")
 y <- readRDS("data2/y.rds")
 ```
 
+## Tests
+
+TODO: incorporate Unit testing talk information here...
+
 ## Session information and Package Management
 
 We have all been there. You want to rerun an analysis from 3 years ago and something bad happens. Bad varies from getting unspecified errors to debug to the worst case where code runs but you get a vastly different answer.
@@ -133,6 +156,32 @@ session_fname <- "sessionInfo.txt"
 session_key <- file.path(output_dir, session_fname)
 writeLines(capture.output(sessionInfo()), session_key)
 ```
+
+This looks like extra work.
+
+**Why would I do extra work?**
+
+**Also isn't that harder to read then this:**
+
+```{r eval=FALSE, include=TRUE}
+writeLines(capture.output(sessionInfo()), "output/SessionInfo.txt")
+```
+
+There is a tension between working in **script** mode vs **production** mode.
+
+It's up to you to decide where to draw that line.
+
+It's not efficient to always code in __production__ mode...
+
+However, if you find that you need to reuse or share code, then work in __production__ mode.
+
+With the first version we can easily untangle configurable options from the script and set those at run time if running the script from a terminal as `arguments` or read them in from a configuration file.
+
+TODO: more on this later.
+
+Worst case, you can move all of your variables to set to the top of your script to glance over them all at once instead of ctrl-f'ing your way through your code.
+
+Setting everything in one place is a good pattern.
 
 #### Install a package from a snapshot in time
 
