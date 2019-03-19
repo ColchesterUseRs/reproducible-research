@@ -263,4 +263,31 @@ print(msg)
 ```
 What was the value stored in `msg`? `msg` is "`r msg`". Don't foget that R code can be executed inline as weel as in chunks!
 
+## Stocastic Code
+
+```{r}
+n <- 5
+(res_1 <- runif(n))
+```
+
+```{r}
+(res_2 <- runif(n))
+```
+```{r}
+identical(res_1, res_2)
+```
+```{r}
+seed <- 808
+set.seed(seed)
+
+(res_1 <- runif(n))
+
+set.seed(seed)
+(res_2 <- runif(n))
+
+identical(res_1, res_2)
+```
+
+
+
 #### Bibliography
