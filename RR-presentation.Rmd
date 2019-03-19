@@ -9,70 +9,41 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## What is reproducible research?[^1]
+## What does reproducible research look like in R?[^1]
+
 
 1. What did I do?
 2. Why did I do it?
 3. How did I set up everything at the time of the analysis?
-4. When did I make changes, and what were they?
+4. **When did I make changes, and what were they?**
 5. Who needs to access it, and how can I get it to them?
 
 [^1]: http://t-redactyl.io/blog/2016/10/a-crash-course-in-reproducible-research-in-r.html
 
-## Two bad practices
+## Do you use `setwd()`?
 
 ![Don't get Jenny mad](https://pbs.twimg.com/media/DQugFIWUEAErq0D.jpg)
 
-![This will make her mad too](https://pbs.twimg.com/media/DQugFMjV4AAZtB-.jpg)
+##### Why is this not a good practice?
+**Solution**
 
-#### Why are these practces sub-optimal?
+1. If you don't know or follow Jenny Bryan check her out. She is awesome:
+    + https://twitter.com/JennyBryan
+1. Take advantage of Projects!
+    + Use them. Starting right now.
+    + If you don't know how, we will fix that.
+    + Seriously, I won't continue until everyone promises to use projects.
 
-Solutions!
+## Does your script start out like this?
 
-1. If you don't know or follow Jenny Bryan check her out: https://twitter.com/JennyBryan
-1. Projects
-    1. Show how to set up and use Projects
-2. Using `save.image` to save output: `save.image("~/development/reproducible-research/bad.RData")`
-    1. Use saveRDS() readRDS() instead TODO: insert example here
+![This will make Jenny mad too](https://pbs.twimg.com/media/DQugFMjV4AAZtB-.jpg)
 
-```{r here, echo=TRUE}
-here::here()
-here::dr_here()
-```
+##### Why is this not a good practice?
 
-## File and Directory management
+**Solution**
 
-### File Naming[^4]
-
-**Put time and thought into naming your files are directories!**
-
-Stolen from here: https://speakerdeck.com/jennybc/how-to-name-files
-
-Go read this afterwards!
-
-![](figures/jenny-names-matter.PNG)
-
-![](figures/jenny-three-principles.PNG)
-
-![](figures/jenny-yes-no.PNG)
-
-[^4]: https://speakerdeck.com/jennybc/how-to-name-files
-
-#### Directory structure
-
-TODO: write something profound here. If going to share code or write a package use typical package structure. Else do something obvious from directory names.
-
-### Data
-
-#### Disable auto save and restore workspace!
-
-All of your objects in the Global Environment
-
-1. Tools
-2. Global Options
-3. ![Set 'Save workspace ro .RData on exit:' to 'Never' <br> Uncheck 'Restore .RData into workspace at startup'](figures/rdata.PNG)
-
-4. Be brave! Pressing ctrl+shift+f10 should not be scary. It's a sign that you have set up your work for RR and you can be confident in your reproducible workflow.
+2. Don't use `save.image` to save objects: `save.image("bad.RData")`
+    + Use `saveRDS()` and `readRDS()`
 
 This is not recommended!
 ```{r data}
@@ -83,7 +54,7 @@ save.image()
 
 Why?
 ```{r}
-x <- list("important information is stored here", "it's going to be overwritten!!!")
+x <- list("important information is stored here", ", but it's going to be overwritten!!!")
 x
 load(".RData")
 x
@@ -120,7 +91,7 @@ y
 
     ...works on Windows, Linux, Mac :)
 
-    This is nice for portability.
+    Really good for portability.
     
 2. What if you add different data in another folder called `data2`?
     
@@ -134,6 +105,52 @@ saveRDS(y, "data2/y.rds")
 x <- readRDS("data/x.rds")
 y <- readRDS("data2/y.rds")
 ```
+
+3. The `here` package offers a nice replacement for `file.path`
+
+```{r here, echo=TRUE}
+here::here()
+here::dr_here() # Provides an explanation for why `here` decided it should be `here`
+```
+
+## File and Directory management
+
+### File Naming[^4]
+
+**Put time and thought into naming your files and directories**
+
+Future you will be grateful!
+
+Stolen from here: https://speakerdeck.com/jennybc/how-to-name-files
+
+Go read this afterwards!
+
+![](figures/jenny-names-matter.PNG)
+
+![](figures/jenny-three-principles.PNG)
+
+![](figures/jenny-yes-no.PNG)
+
+[^4]: https://speakerdeck.com/jennybc/how-to-name-files
+
+#### Directory structure
+
+TODO: Write something profound here. TLDR: If going to share code or write a package use typical package structure. Otherwise use obvious directory names.
+
+### Data
+
+#### Disable auto save and restore workspace!
+
+It's not a good idea to save your workspace and automatically load it at startup.
+
++ can mask code issues that are only discovered later
++ Big objects (10s to 1000s of MB will take a long time to save and load)
+
+1. Tools
+2. Global Options
+3. ![Set 'Save workspace to .RData on exit:' to 'Never' <br> Uncheck 'Restore .RData into workspace at startup'](figures/rdata.PNG)
+
+4. Be brave! Pressing ctrl+shift+f10 should not be scary. It's a sign that you have set up your work for RR and you can be confident in your reproducible workflow.
 
 ## Tests
 
