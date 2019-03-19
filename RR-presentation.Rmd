@@ -242,6 +242,12 @@ Takes up more space because it repeats every package for each project.
 
 TODO: How to use `Packrat` demo???
 
+## Version Control
+
+Get to know Git!
+
+![](http://www.phdcomics.com/comics/archive/phd101212s.gif)
+
 ## Literate Programming
 
 Literate programming is a programming paradigm introduced by Donald Knuth in which a program is given as an explanation of the program logic in a natural language, such as English, interspersed with snippets of macros and traditional source code, from which a compilable source code can be generated[^3]
