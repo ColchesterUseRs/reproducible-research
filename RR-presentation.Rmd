@@ -1,7 +1,7 @@
 ---
 title: "Reproducible Research - an experiment"
 author: "Bob Komara"
-date: "March 17, 2019"
+date: "March 21, 2019"
 output: html_document
 ---
 
@@ -137,20 +137,23 @@ Go read this afterwards!
 
 TODO: Write something profound here. TLDR: If going to share code or write a package use typical package structure. Otherwise use obvious directory names.
 
-### Data
+### Global Environment Objects
 
 #### Disable auto save and restore workspace!
 
-It's not a good idea to save your workspace and automatically load it at startup.
+It's not a good idea to autosave your workspace on exit and automatically load it at startup.
 
-+ can mask code issues that are only discovered later
++ Can mask code issues that are only discovered later at the worst time.
 + Big objects (10s to 1000s of MB will take a long time to save and load)
+
+Solution: Disable this default behavior
 
 1. Tools
 2. Global Options
 3. ![Set 'Save workspace to .RData on exit:' to 'Never' <br> Uncheck 'Restore .RData into workspace at startup'](figures/rdata.PNG)
 
-4. Be brave! Pressing ctrl+shift+f10 should not be scary. It's a sign that you have set up your work for RR and you can be confident in your reproducible workflow.
++ Be brave! Pressing ctrl+shift+f10 (Restart R) should not be scary.
++ It's a sign that you have set up your workflow for RR and can be confident in code.
 
 ## Tests
 
@@ -247,10 +250,11 @@ Literate programming is a programming paradigm introduced by Donald Knuth in whi
 
 How to do this in R?
 
-R markdown!
-
+R Markdown allows you to intermingle descriptive text and code easily!
 ```{r}
-print("This is literate programming :)")
+msg <- "This is literate programming :)"
+print(msg)
 ```
+What was the value stored in `msg`? `msg` is "`r msg`". Don't foget that R code can be executed inline as weel as in chunks!
 
 #### Bibliography
