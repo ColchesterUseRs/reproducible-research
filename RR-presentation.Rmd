@@ -261,7 +261,7 @@ R Markdown allows you to intermingle descriptive text and code easily!
 msg <- "This is literate programming :)"
 print(msg)
 ```
-What was the value stored in `msg`? `msg` is "`r msg`". Don't foget that R code can be executed inline as weel as in chunks!
+What was the value stored in `msg`? `msg` is "`r msg`". Don't forget that R code can be executed inline as well as in chunks!
 
 ## Stocastic Code
 
@@ -288,6 +288,6 @@ set.seed(seed)
 identical(res_1, res_2)
 ```
 
-
+When dealing with parallel (or multicore) code, the seed must get set for each worker for repeatability. 
 
 #### Bibliography
